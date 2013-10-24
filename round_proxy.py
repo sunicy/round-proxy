@@ -6,6 +6,9 @@ import urllib2
     HTTP proxy only
 '''
 class ProxyHandler:
+    """
+        '~' indicates no proxy!
+    """
     ROUND_ROBIN = 'round-robin'
     RANDOM = 'random'
     def __init__(self, proxy_list, policy=ROUND_ROBIN):
@@ -23,7 +26,7 @@ class ProxyHandler:
         else:
             pass
         return {'http': self.proxy_list[self.next_proxy_i]} if (
-                self.proxy_list[self.next_proxy_i] != '') else None
+                self.proxy_list[self.next_proxy_i] != '~') else None
 
 
     def get_opener(self, opener=None):
